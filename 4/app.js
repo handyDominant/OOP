@@ -1,26 +1,25 @@
-// 4. Необходимо отобразить кнопку с надписью «Нажми на меня» и пустой инпут. По
-// клику на кнопку вызвать alert и отобразить сообщение из значения инпута.
-// Проверки на ввод. Обработать ошибки
+// 4. Реализуйте класс MathСalculation. В него передается число n – количество
+// элементов массива. На основании числа формируется динамический массив из n
+// элементов внутри класса. Создать функцию для подсчета всех четных чисел
+// массива. Добавить проверки на ввод
 
 
-const btn = document.querySelector('button');
+class MathСalculation{
+    constructor(n){
+        if(typeof n !== 'number' || n <= 0){
+            throw new Error('нет значения массива');
+        }
+        this.n = [];
 
-btn.addEventListener('click', function () {
-    try {
-        const inp = document.querySelector('input');
-        if (!inp.value.trim()) throw new Error('empty');
-        alert(inp.value)
+        for(let i = 1; i <= n; i++){
+            this.n.push(i);
+        }
     }
-    catch (error) {
-        alert(error.message)
+
+    filterArray(){
+        return this.n.filter(num => num % 2 === 0);
     }
-})
+}
 
-
-
-
-
-
-
-
-
+const mathСalculation = new MathСalculation(10);
+console.log(mathСalculation.filterArray());
