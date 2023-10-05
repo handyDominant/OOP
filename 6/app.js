@@ -11,6 +11,32 @@
 // Необходимо вывести в консоль весь массив
 
 
+class ServerGetAll {
+    constructor() {
+        this.data = [1, 2, 3, 4, 5];
+    }
+
+    controller() {
+        return this.data;
+    }
+
+    service() {
+        if (typeof this.controller === 'undefined') {
+            console.log('нет значения')
+        }
+    }
+
+    repository() {
+        // Эмулируем хранение данных в репозитории
+        this.data = [1, 2, 3, 4, 5];
+
+    }
+}
+
+const serverGetAll = new ServerGetAll;
+serverGetAll.repository(); // Вызываем метод repository для инициализации данных
+console.log(serverGetAll.controller()); // Выводим данные в консоль
+serverGetAll.service(); // Проверяем наличие данных
 
 
 
