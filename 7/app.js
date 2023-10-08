@@ -16,12 +16,47 @@
 // Необходимо вывести в консоль найденный элемент массива по id если таковой
 // имеется. В противном случае бросить исключение. Добавить проверки
 
-class ServerById{
+class ServerById {
+    constructor(data) {
+        this.data = data;
+    }
 
+    middleware() {
+        if (!this.data.id) {
+            throw new Error('Нет значения');
+        }
+        return this.data;
+    }
+
+    controller() {
+        return this.data;
+    }
+
+    service() {
+        const data = this.middleware();
+        console.log(`Значение: ${data.id}`);
+    }
+
+    repository() {
+        if (!this.middleware().id) {
+            throw new Error('Нет значения');
+        }
+        return this.middleware().id;
+    }
 }
 
+const inputData = {
+    id: "javascript"
+};
 
-const serverById = new ServerById;
+const serverById = new ServerById(inputData);
+
+try {
+    serverById.service();
+} catch (error) {
+    console.error(error.message);
+}
+
 
 
 
