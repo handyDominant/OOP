@@ -17,3 +17,9 @@
 // label в toLowerCase таким образом, чтобы в БД был запушен объект вида
 // {"id": "javascript", "label": "JavaScript", "category": "programmingLanguages", "priority": 1}
 // Если совпадение есть – ошибка. Добавить проверки
+
+class ServerPost{
+
+}
+
+const serverPost = new ServerPost;
