@@ -21,3 +21,10 @@
 // { "id": "java", "label": "Java", "category": "programmingLanguages", "priority": 3 },
 // { "id": "go", "label": "GO", "category": "programmingLanguages", "priority": 3 }
 // ]
+
+
+class ServerDelete {
+
+}
+
+const serverDelete = new ServerDelete;
