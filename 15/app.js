@@ -23,8 +23,7 @@
 // ]
 
 
-class ServerDelete {
 
-}
 
-const serverDelete = new ServerDelete;
+
+
