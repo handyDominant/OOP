@@ -17,7 +17,61 @@
 // Если совпадения по id нет – ошибка. Добавить проверки
 
 class ServerPut {
+    constructor() {
+        // Симулируем массив данных в виде объекта
+        this.data = {};
+    }
 
+    middleware(requestData) {
+        // Здесь можно добавить любые необходимые проверки или валидации
+        // Например, проверка на наличие обязательных полей в JSON.
+        if (!requestData.id) {
+            throw new Error("Missing 'id' in JSON");
+        }
+    }
+
+    controller(requestData) {
+        // В этом методе принимаем данные в формате JSON
+        // и передаем их в сервис для обработки
+        this.middleware(requestData);  // Вызываем middleware для проверок
+        const result = this.service(requestData);  // Вызываем сервис
+        return result;
+    }
+
+    service(requestData) {
+        // Здесь производим проверку наличия id в массиве данных
+        const idToUpdate = requestData.id;
+        if (this.data[idToUpdate]) {
+            // Если id существует, обновляем соответствующие значения
+            for (const key in requestData) {
+                this.data[idToUpdate][key] = requestData[key];
+            }
+            return "Data updated successfully";
+        } else {
+            throw new Error(`Client with id ${idToUpdate} not found in the database`);
+        }
+    }
+
+    repository(data) {
+        // Симулируем работу с базой данных. В данном случае, просто обновляем объект данных
+        this.data = data;
+    }
 }
 
-const serverPut = new ServerPut;
+// Пример использования класса ServerPut
+const server = new ServerPut();
+
+// Пример JSON данных для обновления
+const requestJson = {
+    id: "javascript",
+    label: "JavaScript",
+    category: "programmingLanguages",
+    priority: 1
+};
+
+try {
+    const response = server.controller(requestJson);
+    console.log(response);
+} catch (error) {
+    console.error("Error: " + error.message);
+}
